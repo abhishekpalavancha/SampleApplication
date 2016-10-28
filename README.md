@@ -14,7 +14,7 @@ Please write a backend infrastracture using the Spring framework and the MVC des
 	not inform the end user as to "why" a failure happened. If successful, maybe a time stamp or other ID for the record is provided.
 
 - implement the logic to delete a user when receiving a Rest call with a "delete" command and requesting the deletion of a user by their email address.
-	OPTIONS ARE:
+	Options are:
 		ADD,
 		DELETE,
 		UPDATE.
