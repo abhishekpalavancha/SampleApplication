@@ -1,0 +1,8 @@
+{
+	"customer":{
+		"name":"Joe Smith",
+		"email":"js@gmail.com",
+		"age":42,
+		"vehicles":["civic", "accord"]
+	}
+}
