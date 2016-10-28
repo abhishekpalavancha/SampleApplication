@@ -6,7 +6,7 @@ Please write a backend infrastracture using the Spring framework and the MVC des
 - implement the logic for reading/writing to a sql database.
 - implement the logic to write all the attributes of the json object as a record of a sql table called "user" 
 - implementing the logic to send a response back to a client that the db write was successful
-- implement the logic to delete a user when receiving a Rest call with "delete" command and requesting the deletion of a user by thier email address.
+- implement the logic to delete a user when receiving a Rest call with a "delete" command and requesting the deletion of a user by their email address.
 
 Please assume that:
 - the json object is sent to the cloud in the body of a POST Rest call
