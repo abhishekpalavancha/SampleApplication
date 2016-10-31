@@ -8,5 +8,6 @@ public interface SampleRepositary {
 	public SuccessMessages addCustomer(CustomerInfoDTO c);
 
 	public SuccessMessages DeleteCustomer(CustomerInfoDTO customer);
+
 	public SuccessMessages UpdateCustomer(CustomerInfoDTO customer);
 }
