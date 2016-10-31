@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+   
+       xsi:schemaLocation="http://www.springframework.org/schema/mvc
+      
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd ">
+        <context:component-scan base-package="org.abhishek.SampleApplication.Controller"></context:component-scan>
+        <context:component-scan base-package="org.abhishek.SampleApplication.Service"></context:component-scan>
+        <context:component-scan base-package="org.abhishek.SampleApplication.DAO"></context:component-scan>
+        <context:component-scan base-package="org.abhishek.SampleApplication.model"></context:component-scan>
+        <context:component-scan base-package="org.abhishek.SampleApplication.exception"></context:component-scan>
+        
+        <mvc:annotation-driven></mvc:annotation-driven>
+      <bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/CommercialUsers" />
+		<property name="username" value="root" />
+		<property name="password" value="abhi" />
+	</bean>
+	
+	    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+              p:dataSource-ref="dataSource">
+              
+            <property name="jpaVendorAdapter">
+                <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
+                      p:database="MYSQL" p:showSql="true"/>
+                <!-- the 'database' parameter refers to the database dialect being used.
+                	By default, Hibernate will use a 'HSQL' dialect because 'jpa.database' has been set to 'HSQL'
+                	inside file spring/data-access.properties
+
+                 -->
+            </property>
+            <!-- gDickens: BOTH Persistence Unit and Packages to Scan are NOT compatible, persistenceUnit will win -->
+            <property name="persistenceUnitName" value="register"/>
+            <property name="packagesToScan" value="org.abhishek.SampleApplication.model"/>
+        </bean>
+        <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
+              p:entityManagerFactory-ref="entityManagerFactory"/>
+              <tx:annotation-driven transaction-manager="transactionManager"/>
+        <mvc:view-resolvers>
+     <!--    <mvc:content-negotiation use-not-acceptable="true">
+            <mvc:default-views>
+                <bean class="org.springframework.web.servlet.view.JstlView">
+                    <property name="url" value=""/>
+                </bean>
+            </mvc:default-views>
+        </mvc:content-negotiation> -->
+
+      <!-- Registering BeanNameViewResolver and InternalViewResolver -->
+        <mvc:bean-name/>
+        <mvc:jsp prefix="/WEB-INF/" suffix=".jsp"/>
+    </mvc:view-resolvers>
+         </beans>
